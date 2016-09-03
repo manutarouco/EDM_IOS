@@ -20,29 +20,37 @@ class ViewController: UIViewController {
     @IBAction
     func digitPressed(sender: UIButton) {
         
-        
         let digit = sender.currentTitle!
-        let displayText = display.text!
         
-        if userStartedToType {
-            display.text = displayText + digit
+        if userStartedToType{
+            display.text = display.text! + digit
         }else{
             display.text = digit
         }
-        
         userStartedToType = true
         
     }
 
+    var displayText: Double {
+        get {
+            return Double(display.text!)!
+        }
+        set{
+            display.text = String(newValue)
+        }
+    }
+    
     @IBAction func executeOperation(sender: UIButton) {
         let operation = sender.currentTitle!
         
         if let value = Double(display.text!){
-            brain.setOperation(value)
-            display.text = String(brain.execute(operation))
+            brain.setOperand(value)
+            brain.execute(operation)
+            displayText = brain.accumulator
         }
         
         userStartedToType = false
+        
     }
 }
 
