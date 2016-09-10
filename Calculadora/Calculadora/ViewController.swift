@@ -11,11 +11,23 @@ import UIKit
 class ViewController: UIViewController {
 
 
+    
     var brain = CalculatorBrain()
     
     var userStartedToType = false
     
+    
     @IBOutlet weak var display: UILabel!
+    
+    
+    @IBAction func swipe(sender: UISwipeGestureRecognizer) {
+    
+            brain = CalculatorBrain()
+            displayText = 0
+        
+        
+    }
+
     
     @IBAction
     func digitPressed(sender: UIButton) {
